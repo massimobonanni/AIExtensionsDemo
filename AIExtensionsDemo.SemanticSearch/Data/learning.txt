@@ -1,0 +1,64 @@
+﻿How much does the training cost?
+What types of content is available on Microsoft Learn?
+Do I need to create a profile to use Microsoft Learn?
+What is a learning path?
+What is a module/unit/learning path/etc?
+What is a collection?
+What are Achievements and Credentials? What is the difference?
+What happened to bookmarks?
+What languages are the trainings available in?
+How can I access Microsoft Learn's accessibility conformance reports?
+Can I get a current list of what's available on the site?
+Where is my profile?
+Why do I need a profile?
+Can I keep my profile indefinitely, regardless of my employment status?
+How many accounts can I link to my profile?
+What is XP?
+What are badges?
+What are trophies?
+How do I edit my Microsoft Learn profile?
+What information in my profile is publicly viewable?
+Can I download a copy of all my user data?
+How do I delete my user data?
+How do I change my password?
+What should I do if I lost access to my Learn profile?
+Can I merge two profiles of mine into one?
+Where can I find a transcript of my training and credential completion history?
+Where can I find my credentials?
+Where can I find a list of all my achievements?
+Can my employer or school access information about my training and credential history?
+What are the Microsoft Learn sandboxes?
+Why do I need a sandbox?
+Do I need an Azure account to use a sandbox?
+Can I use the sandbox if I already have an Azure subscription?
+How do I activate the sandbox?
+How long does sandbox activation take?
+What happens when I activate a sandbox?8
+Can I activate the sandbox on mobile?
+Do I need to use the sandbox?
+How do I sign in to the sandbox when I use the Azure portal?
+How can I tell if I'm in the sandbox when I use the Azure portal?
+What if I'm not in the right subscription?
+Can I activate multiple sandbox environments?
+I'm seeing resource groups named [Sandbox resource group] in the instructions. What does that mean?
+How long does the sandbox stay around?
+What happens when the sandbox times out?
+Can I use the sandbox from Visual Studio, VS Code, or my favorite Azure tool?
+What are the limitations of the sandbox environment?
+Does resetting Azure Cloud Shell reset the sandbox too?
+Can I save my settings in the sandbox and come back later?
+Where can I find support for my certifications and credentials?
+How do I report problems I'm seeing in the training sandbox?
+I'm having problems completing a learning path/module/unit. Where can I go to get help?
+I found an error with the content. Can I notify someone about it?
+What is the Microsoft Learn Educator Center?
+Are there getting started resources for using Microsoft Learn?
+How do I find educator training content on Learn?
+I was a Microsoft Educator Center (MEC) user, but I don’t see all my MEC training history in my Learn profile. Why?
+I had a Certification Profile, but I don't see it anymore. What happened?
+I understand that my Certification Profile was migrated to a Learn Profile. How do I login to my Learn Profile?
+What happened to my MCID?
+How can I contact Certification Support?
+Where do I find my Learn Username?
+Why should I add a "personal account" (MSA) to my Learn Profile? How can I check I have a "personal account" on my Learn Profile?
+Can I merge Learn Profiles? Does this mean my Certification Data is also merged?
