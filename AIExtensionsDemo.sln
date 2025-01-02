@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AIExtensionsDemo.Dependency
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AIExtensionsDemo.Functions", "AIExtensionsDemo.Functions\AIExtensionsDemo.Functions.csproj", "{910EF369-61FC-47C7-AADD-F118B6F58760}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AIExtensionsDemo.Middleware", "AIExtensionsDemo.Middleware\AIExtensionsDemo.Middleware.csproj", "{0E45C8CA-BC04-4BBC-B0ED-898C50636FFD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{910EF369-61FC-47C7-AADD-F118B6F58760}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{910EF369-61FC-47C7-AADD-F118B6F58760}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{910EF369-61FC-47C7-AADD-F118B6F58760}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E45C8CA-BC04-4BBC-B0ED-898C50636FFD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E45C8CA-BC04-4BBC-B0ED-898C50636FFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E45C8CA-BC04-4BBC-B0ED-898C50636FFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E45C8CA-BC04-4BBC-B0ED-898C50636FFD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
