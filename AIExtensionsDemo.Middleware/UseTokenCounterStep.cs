@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace AIExtensionsDemo.Middleware
 {
-    internal static class TokenCounterStep
+    internal static class UseTokenCounterStep
     {
         public static ChatClientBuilder UseTokenCounter(this ChatClientBuilder builder)
             => builder.Use(inner => new TokenCounterChatClient(inner));
