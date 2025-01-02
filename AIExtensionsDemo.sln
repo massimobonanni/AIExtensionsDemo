@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AIExtensionsDemo.Functions"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AIExtensionsDemo.Middleware", "AIExtensionsDemo.Middleware\AIExtensionsDemo.Middleware.csproj", "{0E45C8CA-BC04-4BBC-B0ED-898C50636FFD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AIExtensionsDemo.TrafficAnalysis", "AIExtensionsDemo.TrafficAnalysis\AIExtensionsDemo.TrafficAnalysis.csproj", "{4FE587C0-927D-4922-8ADE-7893326A753D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{0E45C8CA-BC04-4BBC-B0ED-898C50636FFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0E45C8CA-BC04-4BBC-B0ED-898C50636FFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0E45C8CA-BC04-4BBC-B0ED-898C50636FFD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4FE587C0-927D-4922-8ADE-7893326A753D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4FE587C0-927D-4922-8ADE-7893326A753D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4FE587C0-927D-4922-8ADE-7893326A753D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4FE587C0-927D-4922-8ADE-7893326A753D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
