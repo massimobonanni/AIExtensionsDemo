@@ -107,40 +107,40 @@ var client = app.Services.GetRequiredService<IChatClient>();
 #endregion
 
 #region Complex image analysis with alerts
-var raiseAlertFunction = AIFunctionFactory.Create((string cameraName, string alertReason) =>
-{
-    Console.ForegroundColor = ConsoleColor.Red;
-    Console.WriteLine($"ALERT: {cameraName} - {alertReason}");
-    Console.ResetColor();
-}, "RaiseAlert");
+//var raiseAlertFunction = AIFunctionFactory.Create((string cameraName, string alertReason) =>
+//{
+//    Console.ForegroundColor = ConsoleColor.Red;
+//    Console.WriteLine($"ALERT: {cameraName} - {alertReason}");
+//    Console.ResetColor();
+//}, "RaiseAlert");
 
-var chatOptions = new ChatOptions()
-{
-    Tools = [raiseAlertFunction]
-};
+//var chatOptions = new ChatOptions()
+//{
+//    Tools = [raiseAlertFunction]
+//};
 
-var imageDir = Path.Combine(AppContext.BaseDirectory, "traffic-cam");
+//var imageDir = Path.Combine(AppContext.BaseDirectory, "traffic-cam");
 
-foreach (var imageFile in Directory.GetFiles(imageDir, "*.jpg"))
-{
-    var imageName = Path.GetFileNameWithoutExtension(imageFile);
-    var message = new ChatMessage(ChatRole.User, $$"""
-        Extract traffic information from this image from camera {{imageName}}.
-        Raise an alert only if the camera is broken or there is anything really unusual in the image.
-        """);
-    message.Contents.Add(
-        new ImageContent(File.ReadAllBytes(imageFile), "image/jpg"));
+//foreach (var imageFile in Directory.GetFiles(imageDir, "*.jpg"))
+//{
+//    var imageName = Path.GetFileNameWithoutExtension(imageFile);
+//    var message = new ChatMessage(ChatRole.User, $$"""
+//        Extract traffic information from this image from camera {{imageName}}.
+//        Raise an alert only if the camera is broken or there is anything really unusual in the image.
+//        """);
+//    message.Contents.Add(
+//        new ImageContent(File.ReadAllBytes(imageFile), "image/jpg"));
 
-    Console.ForegroundColor = ConsoleColor.Yellow;
-    Console.WriteLine($"Processing image {imageName}");
-    Console.ResetColor();
+//    Console.ForegroundColor = ConsoleColor.Yellow;
+//    Console.WriteLine($"Processing image {imageName}");
+//    Console.ResetColor();
 
-    var response = await chatClient.CompleteAsync<TrafficImageResult>([message], chatOptions);
+//    var response = await chatClient.CompleteAsync<TrafficImageResult>([message], chatOptions);
 
-    if (response.TryGetResult(out var result))
-    {
-        Console.WriteLine($"status: {result.Status} (cars:{result.NumCars}, trucks: {result.NumTrucks})");
-    }
+//    if (response.TryGetResult(out var result))
+//    {
+//        Console.WriteLine($"status: {result.Status} (cars:{result.NumCars}, trucks: {result.NumTrucks})");
+//    }
 
-}
+//}
 #endregion

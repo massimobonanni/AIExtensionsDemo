@@ -1,4 +1,5 @@
 ﻿using Azure;
+using Azure.AI.Inference;
 using Azure.AI.OpenAI;
 using Microsoft.Extensions.AI;
 using Microsoft.Extensions.Configuration;
@@ -14,7 +15,7 @@ hostBuilder.Configuration.AddUserSecrets<Program>();
 IChatClient chatClient = null;
 
 #region Ollama (local)
-chatClient = new OllamaChatClient(new Uri("http://127.0.0.1:11434"), modelId: "llama3.1");
+//chatClient = new OllamaChatClient(new Uri("http://127.0.0.1:11434"), modelId: "llama3.1");
 #endregion
 
 #region Azure OpenAI 
@@ -35,6 +36,17 @@ chatClient = new OllamaChatClient(new Uri("http://127.0.0.1:11434"), modelId: "l
 //var openAIChatClient = new ChatClient(modelId, apiKey);
 
 //chatClient = openAIChatClient.AsChatClient();
+#endregion
+
+#region GitHub Models
+//string token = hostBuilder.Configuration["GitHubModel:Token"];
+//string endpoint = hostBuilder.Configuration["GitHubModel:Endpoint"];
+//string model = hostBuilder.Configuration["GitHubModel:Model"];
+
+//var ghChatClient = new ChatCompletionsClient(
+//    new Uri(endpoint),
+//    new AzureKeyCredential(token));
+//chatClient = ghChatClient.AsChatClient(model);
 #endregion
 
 // Setup DI services
