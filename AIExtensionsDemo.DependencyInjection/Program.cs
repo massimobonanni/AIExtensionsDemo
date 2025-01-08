@@ -1,13 +1,8 @@
-﻿using Azure;
-using Azure.AI.Inference;
-using Azure.AI.OpenAI;
-using Microsoft.Extensions.AI;
+﻿using Microsoft.Extensions.AI;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using OpenAI.Chat;
-
 
 var hostBuilder = Host.CreateApplicationBuilder(args);
 hostBuilder.Configuration.AddUserSecrets<Program>();
@@ -47,6 +42,10 @@ IChatClient chatClient = null;
 //    new Uri(endpoint),
 //    new AzureKeyCredential(token));
 //chatClient = ghChatClient.AsChatClient(model);
+#endregion
+
+#region Loren Ipsum Chat Client
+//chatClient=new LorenIpsumChatClient();
 #endregion
 
 // Setup DI services
