@@ -38,6 +38,17 @@ IEmbeddingGenerator<string, Embedding<float>> embeddingGenerator = null;
 //embeddingGenerator = new OpenAIEmbeddingGenerator(embeddingClient);
 #endregion
 
+#region GitHub Models
+//string token = configuration["GitHubModel:Token"];
+//string endpoint = configuration["GitHubModel:Endpoint"];
+//string model = configuration["GitHubModel:Model"];
+
+//var ghEmbeddingClient = new EmbeddingsClient(
+//    new Uri(endpoint),
+//    new AzureKeyCredential(token));
+//embeddingGenerator= ghEmbeddingClient.AsEmbeddingGenerator(model);
+#endregion
+
 var embedding = await embeddingGenerator.GenerateEmbeddingAsync("Hello, World!");
 Console.WriteLine($"Vector lenght {embedding.Vector.Length}");
 foreach (var value in embedding.Vector.Span)

@@ -1,5 +1,4 @@
-﻿using AIExtensionsDemo.TrafficAnalysis;
-using Azure;
+﻿using Azure;
 using Azure.AI.OpenAI;
 using Microsoft.Extensions.AI;
 using Microsoft.Extensions.Configuration;

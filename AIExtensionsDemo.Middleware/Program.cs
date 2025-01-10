@@ -1,13 +1,10 @@
-﻿using AIExtensionsDemo.Middleware;
-using Azure;
+﻿using Azure;
 using Azure.AI.OpenAI;
 using Microsoft.Extensions.AI;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using OpenAI.Chat;
-using System.ComponentModel;
 
 var hostBuilder = Host.CreateApplicationBuilder(args);
 hostBuilder.Configuration.AddUserSecrets<Program>();

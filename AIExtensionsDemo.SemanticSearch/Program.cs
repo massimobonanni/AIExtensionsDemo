@@ -1,12 +1,7 @@
-﻿using Azure;
-using Azure.AI.Inference;
-using Azure.AI.OpenAI;
-using Microsoft.Extensions.AI;
+﻿using Microsoft.Extensions.AI;
 using Microsoft.Extensions.Configuration;
-using OpenAI;
-using OpenAI.Embeddings;
-using System.Reflection;
 using System.Numerics.Tensors;
+using System.Reflection;
 
 var configuration = new ConfigurationBuilder()
     .AddUserSecrets<Program>()
