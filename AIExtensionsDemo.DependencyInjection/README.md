@@ -1,9 +1,9 @@
-﻿# Semantic Search
+# Dependency Injection with AI Extensions
 
 
-# Semantic Search
+# Dependency Injection with AI Extensions
 
-This project demonstrates how to implement semantic search using various AI models. Semantic search improves search accuracy by understanding the contextual meaning of terms, rather than relying solely on keyword matching. The project includes configurations for different AI models such as Ollama, Azure OpenAI, OpenAI, and GitHub Models, allowing users to choose the model that best fits their needs.
+This project demonstrates how to integrate various AI models into a .NET application using dependency injection. It provides configuration examples for different AI services, including Ollama, Azure OpenAI, OpenAI, and GitHub Models, enabling seamless integration and usage of these models within your application.
 
 ## Configuration
  
@@ -21,7 +21,7 @@ embeddingGenerator = new OllamaEmbeddingGenerator(
 
 where:
 
-- `<model name>` is the name of the model you want to use (for example `all-minilm`). You can find the full list of the model available at [Ollama Models](https://ollama.com/search).
+- `<model name>` is the name of the model you want to use (for example `llama3.1`). You can find the full list of the model available at [Ollama Models](https://ollama.com/search).
 
 ### Azure OpenAI
 
@@ -73,7 +73,7 @@ and add the following section:
 where:
 
 - `<OpenAI key>` is a key you can generate in your OpenAI API account (see [API Authentication](https://platform.openai.com/docs/api-reference/authentication) for more details);
-- `<Model Name>` is the name of the model you want use (for example `text-embedding-3-small`). You can find the full list of the model available at [OpenAI Models](https://platform.openai.com/models).
+- `<Model Name>` is the name of the model you want use (for example `gpt-4-turbo`). You can find the full list of the model available at [OpenAI Models](https://platform.openai.com/models).
 
 ### GitHub Models
 
@@ -99,4 +99,4 @@ and add the following section:
 where:
 
 - `<GitHub Token>` is a personal access token generated in your GitHub profile (see [GitHub Tokens](https://github.com/settings/tokens) for more details);
-- `<Model Name>` is the name of the model you want use (for example `Cohere-embed-v3-multilingual`). You can find the full list of the model available at [GitHub Models](https://github.com/marketplace?type=models).
+- `<Model Name>` is the name of the model you want use (for example `Phi-3-medium-4k-instruct`). You can find the full list of the model available at [GitHub Models](https://github.com/marketplace?type=models).

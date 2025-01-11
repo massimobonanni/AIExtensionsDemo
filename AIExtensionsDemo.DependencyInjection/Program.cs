@@ -10,7 +10,9 @@ hostBuilder.Configuration.AddUserSecrets<Program>();
 IChatClient chatClient = null;
 
 #region Ollama (local)
-//chatClient = new OllamaChatClient(new Uri("http://127.0.0.1:11434"), modelId: "llama3.1");
+//chatClient = new OllamaChatClient(
+//  new Uri("http://127.0.0.1:11434"),
+//  modelId: "llama3.1");
 #endregion
 
 #region Azure OpenAI 

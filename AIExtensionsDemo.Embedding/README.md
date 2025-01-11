@@ -16,6 +16,10 @@ embeddingGenerator = new OllamaEmbeddingGenerator(
    modelId: "<model name>");
 ```
 
+where:
+
+- `<model name>` is the name of the model you want to use (for example `all-minilm`). You can find the full list of the model available at [Ollama Models](https://ollama.com/search).
+
 ### Azure OpenAI
 
 The settings to configure model deployed in Azure OpenAI are stored in the user secret.
@@ -66,7 +70,7 @@ and add the following section:
 where:
 
 - `<OpenAI key>` is a key you can generate in your OpenAI API account (see [API Authentication](https://platform.openai.com/docs/api-reference/authentication) for more details);
-- `<Model Name>` is the name of the model you want use (for example `text-embedding-3-small`).
+- `<Model Name>` is the name of the model you want use (for example `text-embedding-3-small`). You can find the full list of the model available at [OpenAI Models](https://platform.openai.com/models).
 
 ### GitHub Models
 
