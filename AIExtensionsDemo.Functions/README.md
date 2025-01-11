@@ -1,6 +1,6 @@
-# Dependency Injection with AI Extensions
+# Functions tools for AI Extensions
 
-This project demonstrates how to integrate various AI models into a .NET application using dependency injection. It provides configuration examples for different AI services, including Ollama, Azure OpenAI, OpenAI, and GitHub Models, enabling seamless integration and usage of these models within your application.
+This project provides a demo of how using functions with different AI models within your applications. It includes configurations and examples for connecting to local and cloud-based AI services such as Ollama, Azure OpenAI, OpenAI, and GitHub Models.
 
 ## Configuration
  
