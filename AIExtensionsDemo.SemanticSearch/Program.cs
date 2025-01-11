@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.AI;
+﻿using Azure;
+using Azure.AI.Inference;
+using Microsoft.Extensions.AI;
 using Microsoft.Extensions.Configuration;
 using System.Numerics.Tensors;
 using System.Reflection;
@@ -10,9 +12,9 @@ var configuration = new ConfigurationBuilder()
 IEmbeddingGenerator<string, Embedding<float>> embeddingGenerator = null;
 
 #region Ollama allminilm (local)
-embeddingGenerator = new OllamaEmbeddingGenerator(
-   new Uri("http://127.0.0.1:11434"),
-   modelId: "all-minilm");
+//embeddingGenerator = new OllamaEmbeddingGenerator(
+//   new Uri("http://127.0.0.1:11434"),
+//   modelId: "all-minilm");
 #endregion
 
 #region Azure OpenAI 
@@ -33,6 +35,17 @@ embeddingGenerator = new OllamaEmbeddingGenerator(
 //var embeddingClient = new EmbeddingClient(modelId,apiKey);
 
 //embeddingGenerator = new OpenAIEmbeddingGenerator(embeddingClient);
+#endregion
+
+#region GitHub Models
+//string token = configuration["GitHubModel:Token"];
+//string endpoint = configuration["GitHubModel:Endpoint"];
+//string model = configuration["GitHubModel:Model"];
+
+//var ghEmbeddingClient = new EmbeddingsClient(
+//    new Uri(endpoint),
+//    new AzureKeyCredential(token));
+//embeddingGenerator = ghEmbeddingClient.AsEmbeddingGenerator(model);
 #endregion
 
 Console.WriteLine("Loading data from disk...");
