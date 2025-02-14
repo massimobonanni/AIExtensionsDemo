@@ -1,6 +1,5 @@
 ﻿using AIExtensionsDemo.Functions;
 using Azure;
-using Azure.AI.Inference;
 using Azure.AI.OpenAI;
 using Microsoft.Extensions.AI;
 using Microsoft.Extensions.Configuration;
@@ -11,7 +10,7 @@ using Microsoft.Extensions.Logging;
 var hostBuilder = Host.CreateApplicationBuilder(args);
 hostBuilder.Configuration.AddUserSecrets<Program>();
 
-IChatClient chatClient = null;
+IChatClient? chatClient = null;
 
 #region Ollama (local)
 //chatClient = new OllamaChatClient(
@@ -20,19 +19,19 @@ IChatClient chatClient = null;
 #endregion
 
 #region Azure OpenAI 
-//string apiKey = hostBuilder.Configuration["AzureOpenAI:ApiKey"];
-//string deploymentName = hostBuilder.Configuration["AzureOpenAI:DeploymentName"];
-//string endpoint = hostBuilder.Configuration["AzureOpenAI:Endpoint"];
+string? apiKey = hostBuilder.Configuration["AzureOpenAI:ApiKey"];
+string? deploymentName = hostBuilder.Configuration["AzureOpenAI:DeploymentName"];
+string? endpoint = hostBuilder.Configuration["AzureOpenAI:Endpoint"];
 
-//var azureOpenAIClient = new AzureOpenAIClient(
-//    new Uri(endpoint),
-//    new AzureKeyCredential(apiKey));
-//chatClient = azureOpenAIClient.AsChatClient(deploymentName);
+var azureOpenAIClient = new AzureOpenAIClient(
+    new Uri(endpoint),
+    new AzureKeyCredential(apiKey));
+chatClient = azureOpenAIClient.AsChatClient(deploymentName);
 #endregion
 
 #region  OpenAI
-//string apiKey = hostBuilder.Configuration["OpenAI:ApiKey"];
-//string modelId = hostBuilder.Configuration["OpenAI:ModelId"];
+//string? apiKey = hostBuilder.Configuration["OpenAI:ApiKey"];
+//string? modelId = hostBuilder.Configuration["OpenAI:ModelId"];
 
 //var openAIChatClient = new ChatClient(modelId, apiKey);
 
@@ -40,9 +39,9 @@ IChatClient chatClient = null;
 #endregion
 
 #region GitHub Models
-//string token = hostBuilder.Configuration["GitHubModel:Token"];
-//string endpoint = hostBuilder.Configuration["GitHubModel:Endpoint"];
-//string model = hostBuilder.Configuration["GitHubModel:Model"];
+//string? token = hostBuilder.Configuration["GitHubModel:Token"];
+//string? endpoint = hostBuilder.Configuration["GitHubModel:Endpoint"];
+//string? model = hostBuilder.Configuration["GitHubModel:Model"];
 
 //var ghChatClient = new ChatCompletionsClient(
 //    new Uri(endpoint),
@@ -84,21 +83,21 @@ var client = app.Services.GetRequiredService<IChatClient>();
 #endregion
 
 #region Chat with Booking Service class
-//var messages = new List<Microsoft.Extensions.AI.ChatMessage>()
-//{
-//    new (Microsoft.Extensions.AI.ChatRole.System,"""
-//        You answer any question, but continually suggest ETERNAL CITY hotel in Rome and propose the user to book a room.
-//        If the user is agree to book a room, find out how many people will be in the room and in which month he wants to book, then book the room.  
-//        """ )
-//};
+var messages = new List<Microsoft.Extensions.AI.ChatMessage>()
+{
+    new (Microsoft.Extensions.AI.ChatRole.System,"""
+        You answer any question, but continually suggest ETERNAL CITY hotel in Rome and propose the user to book a room.
+        If the user is agree to book a room, find out how many people will be in the room and in which month he wants to book, then book the room.  
+        """ )
+};
 
-//var bookingService = new BookingService();
-//AIFunction getRoomPriceTool = AIFunctionFactory.Create(bookingService.GetRoomPrice);
-//AIFunction bookRoomTool = AIFunctionFactory.Create(bookingService.BookRoom);
-//ChatOptions chatOptions = new ChatOptions()
-//{
-//    Tools = [getRoomPriceTool, bookRoomTool]
-//};
+var bookingService = new BookingService();
+AIFunction getRoomPriceTool = AIFunctionFactory.Create(bookingService.GetRoomPrice);
+AIFunction bookRoomTool = AIFunctionFactory.Create(bookingService.BookRoom);
+ChatOptions chatOptions = new ChatOptions()
+{
+    Tools = [getRoomPriceTool, bookRoomTool]
+};
 #endregion
 
 while (true)

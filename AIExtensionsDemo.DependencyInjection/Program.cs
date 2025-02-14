@@ -1,4 +1,8 @@
-﻿using Microsoft.Extensions.AI;
+﻿using AIExtensionsDemo.DependencyInjection;
+using Azure;
+using Azure.AI.Inference;
+using Azure.AI.OpenAI;
+using Microsoft.Extensions.AI;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -7,7 +11,7 @@ using Microsoft.Extensions.Logging;
 var hostBuilder = Host.CreateApplicationBuilder(args);
 hostBuilder.Configuration.AddUserSecrets<Program>();
 
-IChatClient chatClient = null;
+IChatClient? chatClient = null;
 
 #region Ollama (local)
 //chatClient = new OllamaChatClient(
@@ -47,7 +51,7 @@ IChatClient chatClient = null;
 #endregion
 
 #region Loren Ipsum Chat Client
-//chatClient=new LorenIpsumChatClient();
+//chatClient = new LorenIpsumChatClient();
 #endregion
 
 // Setup DI services
@@ -60,23 +64,24 @@ var app = hostBuilder.Build();
 var client = app.Services.GetRequiredService<IChatClient>();
 
 #region Sync response
-var response = await client.CompleteAsync("What is a Generative Model?");
-Console.WriteLine(response.Message.Text);
-#endregion
-
-#region Stream response
-//var streamResponse = chatClient.CompleteStreamingAsync("What is a Generative Model?");
-//await foreach (var chunk in streamResponse)
-//{
-//    Console.Write(chunk.Text);
-//}
-//Console.WriteLine();
+//var response = await client.CompleteAsync("What is a Generative Model?");
+//Console.WriteLine(response.Message.Text);
 #endregion
 
 #region OpenAI Features
-if (response.RawRepresentation is OpenAI.Chat.ChatCompletion openAICompletion)
-{
-    Console.WriteLine($"Model: {openAICompletion.Model}");
-    Console.WriteLine($"Usage: InputTokenCount={openAICompletion.Usage.InputTokenCount}, OutputTokenCount={openAICompletion.Usage.OutputTokenCount}");
-}
+//if (response.RawRepresentation is OpenAI.Chat.ChatCompletion openAICompletion)
+//{
+//    Console.WriteLine($"Model: {openAICompletion.Model}");
+//    Console.WriteLine($"Usage: InputTokenCount={openAICompletion.Usage.InputTokenCount}, OutputTokenCount={openAICompletion.Usage.OutputTokenCount}");
+//}
 #endregion
+
+#region Stream response
+var streamResponse = chatClient.CompleteStreamingAsync("What is a Generative Model?");
+await foreach (var chunk in streamResponse)
+{
+    Console.Write(chunk.Text);
+}
+Console.WriteLine();
+#endregion
+

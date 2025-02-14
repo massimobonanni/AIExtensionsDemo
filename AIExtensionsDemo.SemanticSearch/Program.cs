@@ -1,5 +1,6 @@
 ﻿using Azure;
 using Azure.AI.Inference;
+using Azure.AI.OpenAI;
 using Microsoft.Extensions.AI;
 using Microsoft.Extensions.Configuration;
 using System.Numerics.Tensors;
@@ -18,14 +19,14 @@ IEmbeddingGenerator<string, Embedding<float>> embeddingGenerator = null;
 #endregion
 
 #region Azure OpenAI 
-//string apiKey = configuration["AzureOpenAI:ApiKey"];
-//string deploymentName = configuration["AzureOpenAI:DeploymentName"];
-//string endpoint = configuration["AzureOpenAI:Endpoint"];
+string apiKey = configuration["AzureOpenAI:ApiKey"];
+string deploymentName = configuration["AzureOpenAI:DeploymentName"];
+string endpoint = configuration["AzureOpenAI:Endpoint"];
 
-//var azureOpenAIClient = new AzureOpenAIClient(
-//    new Uri(endpoint), 
-//    new AzureKeyCredential(apiKey));
-//embeddingGenerator = azureOpenAIClient.AsEmbeddingGenerator(deploymentName); 
+var azureOpenAIClient = new AzureOpenAIClient(
+    new Uri(endpoint),
+    new AzureKeyCredential(apiKey));
+embeddingGenerator = azureOpenAIClient.AsEmbeddingGenerator(deploymentName);
 #endregion
 
 #region  OpenAI

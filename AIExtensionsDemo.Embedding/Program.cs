@@ -10,7 +10,7 @@ var configuration = new ConfigurationBuilder()
     .AddUserSecrets<Program>()
     .Build();
 
-IEmbeddingGenerator<string, Embedding<float>> embeddingGenerator = null;
+IEmbeddingGenerator<string, Embedding<float>>? embeddingGenerator = null;
 
 #region Ollama allminilm (local)
 //embeddingGenerator = new OllamaEmbeddingGenerator(
@@ -24,9 +24,9 @@ IEmbeddingGenerator<string, Embedding<float>> embeddingGenerator = null;
 //string endpoint = configuration["AzureOpenAI:Endpoint"];
 
 //var azureOpenAIClient = new AzureOpenAIClient(
-//    new Uri(endpoint), 
+//    new Uri(endpoint),
 //    new AzureKeyCredential(apiKey));
-//embeddingGenerator = azureOpenAIClient.AsEmbeddingGenerator(deploymentName); 
+//embeddingGenerator = azureOpenAIClient.AsEmbeddingGenerator(deploymentName);
 #endregion
 
 #region  OpenAI

@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.AI;
+using System.Runtime.CompilerServices;
 
 namespace AIExtensionsDemo.DependencyInjection
 {
@@ -22,13 +23,13 @@ namespace AIExtensionsDemo.DependencyInjection
         public async IAsyncEnumerable<StreamingChatCompletionUpdate> CompleteStreamingAsync(
             IList<ChatMessage> chatMessages,
             ChatOptions? options = null,
-            CancellationToken cancellationToken = default)
+            [EnumeratorCancellation] CancellationToken cancellationToken = default)
         {
-            var updates = Faker.Lorem.Words(Faker.RandomNumber.Next(10,100));
+            var updates = Faker.Lorem.Words(Faker.RandomNumber.Next(10, 100));
             foreach (var update in updates)
             {
                 yield return new StreamingChatCompletionUpdate { Text = $"{update} " };
-                await Task.Delay(Faker.RandomNumber.Next(10, 100), cancellationToken); 
+                await Task.Delay(Faker.RandomNumber.Next(10, 100), cancellationToken);
             }
         }
 

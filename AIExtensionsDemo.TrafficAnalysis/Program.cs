@@ -1,4 +1,5 @@
-﻿using Azure;
+﻿using AIExtensionsDemo.TrafficAnalysis;
+using Azure;
 using Azure.AI.OpenAI;
 using Microsoft.Extensions.AI;
 using Microsoft.Extensions.Configuration;
@@ -43,10 +44,10 @@ var app = hostBuilder.Build();
 var client = app.Services.GetRequiredService<IChatClient>();
 
 #region Simple Image Analysis
-//var message = new ChatMessage(ChatRole.User,"What is in this image?");
+//var message = new ChatMessage(ChatRole.User, "What is in this image?");
 
-//var imageBytes = File.ReadAllBytes(Path.Combine("traffic-cam", "videoframe_12118.jpg"));
-//message.Contents.Add(new ImageContent(imageBytes,"image/jpg"));
+//var imageBytes = File.ReadAllBytes(Path.Combine("traffic-cam", "videoframe_1000.jpg"));
+//message.Contents.Add(new ImageContent(imageBytes, "image/jpg"));
 
 //var streamResponse = chatClient.CompleteStreamingAsync([message]);
 //await foreach (var chunk in streamResponse)
@@ -57,12 +58,12 @@ var client = app.Services.GetRequiredService<IChatClient>();
 #endregion
 
 #region Multi image analysis
-//var imageDir=Path.Combine(AppContext.BaseDirectory, "traffic-cam");
+//var imageDir = Path.Combine(AppContext.BaseDirectory, "traffic-cam");
 
-//foreach (var imageFile in Directory.GetFiles(imageDir,"*.jpg"))
+//foreach (var imageFile in Directory.GetFiles(imageDir, "*.jpg"))
 //{
 //    var imageName = Path.GetFileNameWithoutExtension(imageFile);
-//    var message = new ChatMessage(ChatRole.User, 
+//    var message = new ChatMessage(ChatRole.User,
 //        $"Extract information from this image from camera {imageName}");
 //    message.Contents.Add(
 //        new ImageContent(File.ReadAllBytes(imageFile), "image/jpg"));
@@ -99,7 +100,7 @@ var client = app.Services.GetRequiredService<IChatClient>();
 //    var response = await chatClient.CompleteAsync<TrafficImageResult>([message]);
 
 //    if (response.TryGetResult(out var result))
-//    { 
+//    {
 //        Console.WriteLine($"status: {result.Status} (cars:{result.NumCars}, trucks: {result.NumTrucks})");
 //    }
 //}
@@ -107,11 +108,13 @@ var client = app.Services.GetRequiredService<IChatClient>();
 
 #region Complex image analysis with alerts
 //var raiseAlertFunction = AIFunctionFactory.Create((string cameraName, string alertReason) =>
-//{
-//    Console.ForegroundColor = ConsoleColor.Red;
-//    Console.WriteLine($"ALERT: {cameraName} - {alertReason}");
-//    Console.ResetColor();
-//}, "RaiseAlert");
+//    {
+//        Console.ForegroundColor = ConsoleColor.Red;
+//        Console.WriteLine($"ALERT: {cameraName} - {alertReason}");
+//        Console.ResetColor();
+//    },
+//    "RaiseAlert",
+//    "Raise an alert for a broken image or camera, anything unusual in the image or image is modified.");
 
 //var chatOptions = new ChatOptions()
 //{
@@ -125,7 +128,7 @@ var client = app.Services.GetRequiredService<IChatClient>();
 //    var imageName = Path.GetFileNameWithoutExtension(imageFile);
 //    var message = new ChatMessage(ChatRole.User, $$"""
 //        Extract traffic information from this image from camera {{imageName}}.
-//        Raise an alert only if the camera is broken or there is anything really unusual in the image.
+//        Raise an alert only if the camera or image is broken, there is anything really unusual in the image or the image is modified adding some artifacts.
 //        """);
 //    message.Contents.Add(
 //        new ImageContent(File.ReadAllBytes(imageFile), "image/jpg"));
@@ -140,6 +143,5 @@ var client = app.Services.GetRequiredService<IChatClient>();
 //    {
 //        Console.WriteLine($"status: {result.Status} (cars:{result.NumCars}, trucks: {result.NumTrucks})");
 //    }
-
 //}
 #endregion
