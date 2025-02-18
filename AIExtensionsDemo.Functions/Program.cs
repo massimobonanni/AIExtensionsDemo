@@ -83,21 +83,21 @@ var client = app.Services.GetRequiredService<IChatClient>();
 #endregion
 
 #region Chat with Booking Service class
-var messages = new List<Microsoft.Extensions.AI.ChatMessage>()
-{
-    new (Microsoft.Extensions.AI.ChatRole.System,"""
-        You answer any question, but continually suggest ETERNAL CITY hotel in Rome and propose the user to book a room.
-        If the user is agree to book a room, find out how many people will be in the room and in which month he wants to book, then book the room.  
-        """ )
-};
+//var messages = new List<Microsoft.Extensions.AI.ChatMessage>()
+//{
+//    new (Microsoft.Extensions.AI.ChatRole.System,"""
+//        You answer any question, but continually suggest ETERNAL CITY hotel in Rome and propose the user to book a room.
+//        If the user is agree to book a room, find out how many people will be in the room and in which month he wants to book, then book the room.  
+//        """ )
+//};
 
-var bookingService = new BookingService();
-AIFunction getRoomPriceTool = AIFunctionFactory.Create(bookingService.GetRoomPrice);
-AIFunction bookRoomTool = AIFunctionFactory.Create(bookingService.BookRoom);
-ChatOptions chatOptions = new ChatOptions()
-{
-    Tools = [getRoomPriceTool, bookRoomTool]
-};
+//var bookingService = new BookingService();
+//AIFunction getRoomPriceTool = AIFunctionFactory.Create(bookingService.GetRoomPrice);
+//AIFunction bookRoomTool = AIFunctionFactory.Create(bookingService.BookRoom);
+//ChatOptions chatOptions = new ChatOptions()
+//{
+//    Tools = [getRoomPriceTool, bookRoomTool]
+//};
 #endregion
 
 while (true)

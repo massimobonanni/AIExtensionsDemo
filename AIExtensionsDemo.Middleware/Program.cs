@@ -52,9 +52,9 @@ chatClient = azureOpenAIClient.AsChatClient(deploymentName);
 
 // Setup DI services
 hostBuilder.Services.AddChatClient(chatClient)
-    .UseLanguage("italian")
-    .UseRateLimit(TimeSpan.FromSeconds(30))
-    .UseTokenCounter()
+    //.UseLanguage("italian")
+    //.UseRateLimit(TimeSpan.FromSeconds(30))
+    //.UseTokenCounter()
     .UseFunctionInvocation();
 
 hostBuilder.Services.AddLogging(builder => builder.AddConsole().SetMinimumLevel(LogLevel.Trace));

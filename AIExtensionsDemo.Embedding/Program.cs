@@ -46,7 +46,7 @@ IEmbeddingGenerator<string, Embedding<float>>? embeddingGenerator = null;
 //var ghEmbeddingClient = new EmbeddingsClient(
 //    new Uri(endpoint),
 //    new AzureKeyCredential(token));
-//embeddingGenerator= ghEmbeddingClient.AsEmbeddingGenerator(model);
+//embeddingGenerator = ghEmbeddingClient.AsEmbeddingGenerator(model);
 #endregion
 
 var embedding = await embeddingGenerator.GenerateEmbeddingAsync("Hello, World!");
