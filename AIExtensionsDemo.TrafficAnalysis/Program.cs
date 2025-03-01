@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using OpenAI.Images;
 
 var hostBuilder = Host.CreateApplicationBuilder(args);
 hostBuilder.Configuration.AddUserSecrets<Program>();
@@ -13,14 +14,14 @@ hostBuilder.Configuration.AddUserSecrets<Program>();
 IChatClient chatClient = null;
 
 #region Azure OpenAI 
-string apiKey = hostBuilder.Configuration["AzureOpenAI:ApiKey"];
-string deploymentName = hostBuilder.Configuration["AzureOpenAI:DeploymentName"];
-string endpoint = hostBuilder.Configuration["AzureOpenAI:Endpoint"];
+//string apiKey = hostBuilder.Configuration["AzureOpenAI:ApiKey"];
+//string deploymentName = hostBuilder.Configuration["AzureOpenAI:DeploymentName"];
+//string endpoint = hostBuilder.Configuration["AzureOpenAI:Endpoint"];
 
-var azureOpenAIClient = new AzureOpenAIClient(
-    new Uri(endpoint),
-    new AzureKeyCredential(apiKey));
-chatClient = azureOpenAIClient.AsChatClient(deploymentName);
+//var azureOpenAIClient = new AzureOpenAIClient(
+//    new Uri(endpoint),
+//    new AzureKeyCredential(apiKey));
+//chatClient = azureOpenAIClient.AsChatClient(deploymentName);
 #endregion
 
 #region  OpenAI
@@ -47,9 +48,9 @@ var client = app.Services.GetRequiredService<IChatClient>();
 //var message = new ChatMessage(ChatRole.User, "What is in this image?");
 
 //var imageBytes = File.ReadAllBytes(Path.Combine("traffic-cam", "videoframe_1000.jpg"));
-//message.Contents.Add(new ImageContent(imageBytes, "image/jpg"));
+//message.Contents.Add(new DataContent(imageBytes, "image/jpg"));
 
-//var streamResponse = chatClient.CompleteStreamingAsync([message]);
+//var streamResponse = chatClient.GetStreamingResponseAsync([message]);
 //await foreach (var chunk in streamResponse)
 //{
 //    Console.Write(chunk.Text);
@@ -66,13 +67,13 @@ var client = app.Services.GetRequiredService<IChatClient>();
 //    var message = new ChatMessage(ChatRole.User,
 //        $"Extract information from this image from camera {imageName}");
 //    message.Contents.Add(
-//        new ImageContent(File.ReadAllBytes(imageFile), "image/jpg"));
+//        new DataContent(File.ReadAllBytes(imageFile), "image/jpg"));
 
 //    Console.ForegroundColor = ConsoleColor.Yellow;
 //    Console.WriteLine($"Processing image {imageName}");
 //    Console.ResetColor();
 
-//    var streamResponse = chatClient.CompleteStreamingAsync([message]);
+//    var streamResponse = chatClient.GetStreamingResponseAsync([message]);
 //    await foreach (var chunk in streamResponse)
 //    {
 //        Console.Write(chunk.Text);
@@ -91,13 +92,13 @@ var client = app.Services.GetRequiredService<IChatClient>();
 //    var message = new ChatMessage(ChatRole.User,
 //        $"Extract information from this image from camera {imageName}");
 //    message.Contents.Add(
-//        new ImageContent(File.ReadAllBytes(imageFile), "image/jpg"));
+//        new DataContent(File.ReadAllBytes(imageFile), "image/jpg"));
 
 //    Console.ForegroundColor = ConsoleColor.Yellow;
 //    Console.WriteLine($"Processing image {imageName}");
 //    Console.ResetColor();
 
-//    var response = await chatClient.CompleteAsync<TrafficImageResult>([message]);
+//    var response = await chatClient.GetResponseAsync<TrafficImageResult>([message]);
 
 //    if (response.TryGetResult(out var result))
 //    {
@@ -131,13 +132,13 @@ var client = app.Services.GetRequiredService<IChatClient>();
 //        Raise an alert only if the camera or image is broken, there is anything really unusual in the image or the image is modified adding some artifacts.
 //        """);
 //    message.Contents.Add(
-//        new ImageContent(File.ReadAllBytes(imageFile), "image/jpg"));
+//        new DataContent(File.ReadAllBytes(imageFile), "image/jpg"));
 
 //    Console.ForegroundColor = ConsoleColor.Yellow;
 //    Console.WriteLine($"Processing image {imageName}");
 //    Console.ResetColor();
 
-//    var response = await chatClient.CompleteAsync<TrafficImageResult>([message], chatOptions);
+//    var response = await chatClient.GetResponseAsync<TrafficImageResult>([message], chatOptions);
 
 //    if (response.TryGetResult(out var result))
 //    {

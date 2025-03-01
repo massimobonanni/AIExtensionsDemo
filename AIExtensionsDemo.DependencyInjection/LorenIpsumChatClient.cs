@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.AI;
+using OpenAI.Chat;
 using System.Runtime.CompilerServices;
 
 namespace AIExtensionsDemo.DependencyInjection
@@ -7,35 +8,19 @@ namespace AIExtensionsDemo.DependencyInjection
     {
         public ChatClientMetadata Metadata => throw new NotImplementedException();
 
-        public Task<ChatCompletion> CompleteAsync(
-            IList<ChatMessage> chatMessages,
-            ChatOptions? options = null,
-            CancellationToken cancellationToken = default)
+        public void Dispose()
         {
-            var message = new ChatMessage();
+
+        }
+
+        public Task<ChatResponse> GetResponseAsync(IList<Microsoft.Extensions.AI.ChatMessage> chatMessages, ChatOptions? options = null, CancellationToken cancellationToken = default)
+        {
+            var message = new Microsoft.Extensions.AI.ChatMessage();
             message.Role = ChatRole.Assistant;
 
             message.Text = Faker.Lorem.Sentence();
 
-            return Task.FromResult(new ChatCompletion(message));
-        }
-
-        public async IAsyncEnumerable<StreamingChatCompletionUpdate> CompleteStreamingAsync(
-            IList<ChatMessage> chatMessages,
-            ChatOptions? options = null,
-            [EnumeratorCancellation] CancellationToken cancellationToken = default)
-        {
-            var updates = Faker.Lorem.Words(Faker.RandomNumber.Next(10, 100));
-            foreach (var update in updates)
-            {
-                yield return new StreamingChatCompletionUpdate { Text = $"{update} " };
-                await Task.Delay(Faker.RandomNumber.Next(10, 100), cancellationToken);
-            }
-        }
-
-        public void Dispose()
-        {
-
+            return Task.FromResult(new ChatResponse(message));
         }
 
         public object? GetService(Type serviceType, object? serviceKey = null)
@@ -48,6 +33,16 @@ namespace AIExtensionsDemo.DependencyInjection
                 serviceType == typeof(LorenIpsumChatClient) ? this :
                 serviceType.IsInstanceOfType(this) ? this :
                 null;
+        }
+
+        public async IAsyncEnumerable<ChatResponseUpdate> GetStreamingResponseAsync(IList<Microsoft.Extensions.AI.ChatMessage> chatMessages, ChatOptions? options = null, CancellationToken cancellationToken = default)
+        {
+            var updates = Faker.Lorem.Words(Faker.RandomNumber.Next(10, 100));
+            foreach (var update in updates)
+            {
+                yield return new ChatResponseUpdate { Text = $"{update} " };
+                await Task.Delay(Faker.RandomNumber.Next(10, 100), cancellationToken);
+            }
         }
     }
 }

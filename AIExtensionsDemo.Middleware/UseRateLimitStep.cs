@@ -25,7 +25,7 @@ namespace AIExtensionsDemo.Middleware
                 PermitLimit = 1,
             });
 
-            public override async Task<ChatCompletion> CompleteAsync(IList<ChatMessage> chatMessages, ChatOptions? options = null, CancellationToken cancellationToken = default)
+            public override async Task<ChatResponse> GetResponseAsync(IList<ChatMessage> chatMessages, ChatOptions? options = null, CancellationToken cancellationToken = default)
             {
                 var lease= rateLimit.AttemptAcquire();
                 if (!lease.IsAcquired)
@@ -34,7 +34,7 @@ namespace AIExtensionsDemo.Middleware
                         "SKIPPING DUE TO RATE LIMIT. TRY AGAIN LATER."));
                 }
 
-                return await base.CompleteAsync(chatMessages, options, cancellationToken);
+                return await base.GetResponseAsync(chatMessages, options, cancellationToken);
             }
         }
     }

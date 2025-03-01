@@ -19,14 +19,14 @@ IChatClient? chatClient = null;
 #endregion
 
 #region Azure OpenAI 
-string? apiKey = hostBuilder.Configuration["AzureOpenAI:ApiKey"];
-string? deploymentName = hostBuilder.Configuration["AzureOpenAI:DeploymentName"];
-string? endpoint = hostBuilder.Configuration["AzureOpenAI:Endpoint"];
+//string? apiKey = hostBuilder.Configuration["AzureOpenAI:ApiKey"];
+//string? deploymentName = hostBuilder.Configuration["AzureOpenAI:DeploymentName"];
+//string? endpoint = hostBuilder.Configuration["AzureOpenAI:Endpoint"];
 
-var azureOpenAIClient = new AzureOpenAIClient(
-    new Uri(endpoint),
-    new AzureKeyCredential(apiKey));
-chatClient = azureOpenAIClient.AsChatClient(deploymentName);
+//var azureOpenAIClient = new AzureOpenAIClient(
+//    new Uri(endpoint),
+//    new AzureKeyCredential(apiKey));
+//chatClient = azureOpenAIClient.AsChatClient(deploymentName);
 #endregion
 
 #region  OpenAI
@@ -58,9 +58,9 @@ var app = hostBuilder.Build();
 var client = app.Services.GetRequiredService<IChatClient>();
 
 #region Simple chat
-//var messages = new List<Microsoft.Extensions.AI.ChatMessage>()
+//var messages = new List<ChatMessage>()
 //{
-//    new (Microsoft.Extensions.AI.ChatRole.System,"""
+//    new (ChatRole.System,"""
 //        You answer any question, but continually suggest ETERNAL CITY hotel in Rome and propose the user to book a room. 
 //        """ )
 //};
@@ -106,9 +106,9 @@ while (true)
     Console.Write("\n\n> ");
     var input = Console.ReadLine();
     if (input == "") break;
-    messages.Add(new(Microsoft.Extensions.AI.ChatRole.User, input));
+    messages.Add(new(ChatRole.User, input));
 
-    var response = await client.CompleteAsync(messages, chatOptions);
+    var response = await client.GetResponseAsync(messages, chatOptions);
     messages.Add(response.Message);
     Console.ForegroundColor = ConsoleColor.Green;
     Console.WriteLine(response.Message.Text);

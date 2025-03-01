@@ -15,19 +15,19 @@ IChatClient? chatClient = null;
 
 #region Ollama (local)
 //chatClient = new OllamaChatClient(
-//  new Uri("http://127.0.0.1:11434"),
-//  modelId: "llama3.1");
+//    new Uri("http://127.0.0.1:11434"),
+//    modelId: "deepseek-r1:7b");
 #endregion
 
 #region Azure OpenAI 
-string apiKey = hostBuilder.Configuration["AzureOpenAI:ApiKey"];
-string deploymentName = hostBuilder.Configuration["AzureOpenAI:DeploymentName"];
-string endpoint = hostBuilder.Configuration["AzureOpenAI:Endpoint"];
+//string apiKey = hostBuilder.Configuration["AzureOpenAI:ApiKey"];
+//string deploymentName = hostBuilder.Configuration["AzureOpenAI:DeploymentName"];
+//string endpoint = hostBuilder.Configuration["AzureOpenAI:Endpoint"];
 
-var azureOpenAIClient = new AzureOpenAIClient(
-    new Uri(endpoint),
-    new AzureKeyCredential(apiKey));
-chatClient = azureOpenAIClient.AsChatClient(deploymentName);
+//var azureOpenAIClient = new AzureOpenAIClient(
+//    new Uri(endpoint),
+//    new AzureKeyCredential(apiKey));
+//chatClient = azureOpenAIClient.AsChatClient(deploymentName);
 #endregion
 
 #region  OpenAI
@@ -52,9 +52,9 @@ chatClient = azureOpenAIClient.AsChatClient(deploymentName);
 
 // Setup DI services
 hostBuilder.Services.AddChatClient(chatClient)
-    //.UseLanguage("italian")
-    //.UseRateLimit(TimeSpan.FromSeconds(30))
-    //.UseTokenCounter()
+    .UseLanguage("italian")
+    .UseRateLimit(TimeSpan.FromSeconds(30))
+    .UseTokenCounter()
     .UseFunctionInvocation();
 
 hostBuilder.Services.AddLogging(builder => builder.AddConsole().SetMinimumLevel(LogLevel.Trace));
@@ -78,7 +78,7 @@ while (true)
     if (input == "") break;
     messages.Add(new(Microsoft.Extensions.AI.ChatRole.User, input));
 
-    var response = await client.CompleteAsync(messages);
+    var response = await client.GetResponseAsync(messages);
     messages.Add(response.Message);
     Console.ForegroundColor = ConsoleColor.Green;
     Console.WriteLine(response.Message.Text);

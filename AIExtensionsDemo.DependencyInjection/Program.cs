@@ -64,7 +64,7 @@ var app = hostBuilder.Build();
 var client = app.Services.GetRequiredService<IChatClient>();
 
 #region Sync response
-//var response = await client.CompleteAsync("What is a Generative Model?");
+//var response = await client.GetResponseAsync("What is a Generative Model?");
 //Console.WriteLine(response.Message.Text);
 #endregion
 
@@ -77,11 +77,11 @@ var client = app.Services.GetRequiredService<IChatClient>();
 #endregion
 
 #region Stream response
-var streamResponse = chatClient.CompleteStreamingAsync("What is a Generative Model?");
-await foreach (var chunk in streamResponse)
-{
-    Console.Write(chunk.Text);
-}
-Console.WriteLine();
+//var streamResponse = chatClient.GetStreamingResponseAsync("What are the purpose of the Microsoft.Extensions");
+//await foreach (var chunk in streamResponse)
+//{
+//    Console.Write(chunk.Text);
+//}
+//Console.WriteLine();
 #endregion
 

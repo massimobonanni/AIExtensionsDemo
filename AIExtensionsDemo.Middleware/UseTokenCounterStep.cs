@@ -19,12 +19,12 @@ namespace AIExtensionsDemo.Middleware
             private static int TotalInputTokens = 0;
             private static int TotalOutputTokens = 0;
 
-            public override async Task<ChatCompletion> CompleteAsync(IList<ChatMessage> chatMessages, ChatOptions? options = null, CancellationToken cancellationToken = default)
+            public override async Task<ChatResponse> GetResponseAsync(IList<ChatMessage> chatMessages, ChatOptions? options = null, CancellationToken cancellationToken = default)
             {
-                ChatCompletion response=null;
+                ChatResponse response=null;
                 try
                 {
-                    response = await base.CompleteAsync(chatMessages, options, cancellationToken);
+                    response = await base.GetResponseAsync(chatMessages, options, cancellationToken);
 
                     if (response.RawRepresentation is OpenAI.Chat.ChatCompletion openAICompletion)
                     {
