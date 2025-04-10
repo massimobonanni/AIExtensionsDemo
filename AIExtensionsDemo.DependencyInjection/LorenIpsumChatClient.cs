@@ -13,13 +13,9 @@ namespace AIExtensionsDemo.DependencyInjection
 
         }
 
-        public Task<ChatResponse> GetResponseAsync(IList<Microsoft.Extensions.AI.ChatMessage> chatMessages, ChatOptions? options = null, CancellationToken cancellationToken = default)
+        public Task<ChatResponse> GetResponseAsync(IEnumerable<Microsoft.Extensions.AI.ChatMessage> messages, ChatOptions? options = null, CancellationToken cancellationToken = default)
         {
-            var message = new Microsoft.Extensions.AI.ChatMessage();
-            message.Role = ChatRole.Assistant;
-
-            message.Text = Faker.Lorem.Sentence();
-
+            var message = new Microsoft.Extensions.AI.ChatMessage(ChatRole.Assistant, Faker.Lorem.Sentence());
             return Task.FromResult(new ChatResponse(message));
         }
 
@@ -35,12 +31,12 @@ namespace AIExtensionsDemo.DependencyInjection
                 null;
         }
 
-        public async IAsyncEnumerable<ChatResponseUpdate> GetStreamingResponseAsync(IList<Microsoft.Extensions.AI.ChatMessage> chatMessages, ChatOptions? options = null, CancellationToken cancellationToken = default)
+        public async IAsyncEnumerable<ChatResponseUpdate> GetStreamingResponseAsync(IEnumerable<Microsoft.Extensions.AI.ChatMessage> messages, ChatOptions? options = null, CancellationToken cancellationToken = default)
         {
             var updates = Faker.Lorem.Words(Faker.RandomNumber.Next(10, 100));
             foreach (var update in updates)
             {
-                yield return new ChatResponseUpdate { Text = $"{update} " };
+                yield return new ChatResponseUpdate(ChatRole.Assistant, update);
                 await Task.Delay(Faker.RandomNumber.Next(10, 100), cancellationToken);
             }
         }

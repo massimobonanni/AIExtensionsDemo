@@ -20,41 +20,41 @@ IChatClient? chatClient = null;
 #endregion
 
 #region Azure OpenAI 
-//string apiKey = hostBuilder.Configuration["AzureOpenAI:ApiKey"];
-//string deploymentName = hostBuilder.Configuration["AzureOpenAI:DeploymentName"];
-//string endpoint = hostBuilder.Configuration["AzureOpenAI:Endpoint"];
+string apiKey = hostBuilder.Configuration["AzureOpenAI:ApiKey"];
+string deploymentName = hostBuilder.Configuration["AzureOpenAI:DeploymentName"];
+string endpoint = hostBuilder.Configuration["AzureOpenAI:Endpoint"];
 
-//var azureOpenAIClient = new AzureOpenAIClient(
-//    new Uri(endpoint),
-//    new AzureKeyCredential(apiKey));
-//chatClient = azureOpenAIClient.AsChatClient(deploymentName);
+var azureOpenAIClient = new AzureOpenAIClient(
+    new Uri(endpoint),
+    new AzureKeyCredential(apiKey));
+chatClient = azureOpenAIClient.GetChatClient(deploymentName).AsIChatClient();
 #endregion
 
 #region  OpenAI
 //string apiKey = hostBuilder.Configuration["OpenAI:ApiKey"];
 //string modelId = hostBuilder.Configuration["OpenAI:ModelId"];
 
-//var openAIChatClient = new ChatClient(modelId, apiKey);
+//var openAIChatClient = new OpenAI.Chat.ChatClient(modelId, apiKey);
 
-//chatClient = openAIChatClient.AsChatClient();
+//chatClient = openAIChatClient.AsIChatClient();
 #endregion
 
 #region GitHub Models
 //string token = hostBuilder.Configuration["GitHubModel:Token"];
 //string endpoint = hostBuilder.Configuration["GitHubModel:Endpoint"];
-//string model = hostBuilder.Configuration["GitHubModel:Model"];
+//string model = hostBuilder.Configuration["GitHubModel:Model"]; // DeepSeek-V3
 
 //var ghChatClient = new ChatCompletionsClient(
 //    new Uri(endpoint),
 //    new AzureKeyCredential(token));
-//chatClient = ghChatClient.AsChatClient(model);
+//chatClient = ghChatClient.AsIChatClient(model);
 #endregion
 
 // Setup DI services
 hostBuilder.Services.AddChatClient(chatClient)
     .UseLanguage("italian")
-    .UseRateLimit(TimeSpan.FromSeconds(30))
-    .UseTokenCounter()
+    //.UseRateLimit(TimeSpan.FromSeconds(30))
+    //.UseTokenCounter()
     .UseFunctionInvocation();
 
 hostBuilder.Services.AddLogging(builder => builder.AddConsole().SetMinimumLevel(LogLevel.Trace));
@@ -79,7 +79,7 @@ while (true)
     messages.Add(new(Microsoft.Extensions.AI.ChatRole.User, input));
 
     var response = await client.GetResponseAsync(messages);
-    messages.Add(response.Message);
+    messages.Add(new ChatMessage(Microsoft.Extensions.AI.ChatRole.Assistant,response.Text));
     Console.ForegroundColor = ConsoleColor.Green;
-    Console.WriteLine(response.Message.Text);
+    Console.WriteLine(response.Text);
 }

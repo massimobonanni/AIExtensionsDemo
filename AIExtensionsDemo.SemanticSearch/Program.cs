@@ -26,16 +26,17 @@ IEmbeddingGenerator<string, Embedding<float>> embeddingGenerator = null;
 //var azureOpenAIClient = new AzureOpenAIClient(
 //    new Uri(endpoint),
 //    new AzureKeyCredential(apiKey));
-//embeddingGenerator = azureOpenAIClient.AsEmbeddingGenerator(deploymentName);
+//var embeddingClient= azureOpenAIClient.GetEmbeddingClient(deploymentName);
+//embeddingGenerator = embeddingClient.AsIEmbeddingGenerator();
 #endregion
 
 #region  OpenAI
 //string apiKey = configuration["OpenAI:ApiKey"];
 //string modelId = configuration["OpenAI:ModelId"];
 
-//var embeddingClient = new EmbeddingClient(modelId,apiKey);
+//var embeddingClient = new OpenAI.Embeddings.EmbeddingClient(modelId, apiKey);
 
-//embeddingGenerator = new OpenAIEmbeddingGenerator(embeddingClient);
+//embeddingGenerator = embeddingClient.AsIEmbeddingGenerator();
 #endregion
 
 #region GitHub Models
@@ -46,7 +47,7 @@ IEmbeddingGenerator<string, Embedding<float>> embeddingGenerator = null;
 //var ghEmbeddingClient = new EmbeddingsClient(
 //    new Uri(endpoint),
 //    new AzureKeyCredential(token));
-//embeddingGenerator = ghEmbeddingClient.AsEmbeddingGenerator(model);
+//embeddingGenerator = ghEmbeddingClient.AsIEmbeddingGenerator(model);
 #endregion
 
 Console.WriteLine("Loading data from disk...");

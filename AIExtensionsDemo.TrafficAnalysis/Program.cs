@@ -21,16 +21,16 @@ IChatClient chatClient = null;
 //var azureOpenAIClient = new AzureOpenAIClient(
 //    new Uri(endpoint),
 //    new AzureKeyCredential(apiKey));
-//chatClient = azureOpenAIClient.AsChatClient(deploymentName);
+//chatClient = azureOpenAIClient.GetChatClient(deploymentName).AsIChatClient();
 #endregion
 
 #region  OpenAI
 //string apiKey = hostBuilder.Configuration["OpenAI:ApiKey"];
 //string modelId = hostBuilder.Configuration["OpenAI:ModelId"];
 
-//var openAIChatClient = new ChatClient(modelId, apiKey);
+//var openAIChatClient = new OpenAI.Chat.ChatClient(modelId, apiKey);
 
-//chatClient = openAIChatClient.AsChatClient();
+//chatClient = openAIChatClient.AsIChatClient();
 #endregion
 
 // Setup DI services

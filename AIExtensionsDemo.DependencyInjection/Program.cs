@@ -27,16 +27,16 @@ IChatClient? chatClient = null;
 //var azureOpenAIClient = new AzureOpenAIClient(
 //    new Uri(endpoint),
 //    new AzureKeyCredential(apiKey));
-//chatClient = azureOpenAIClient.AsChatClient(deploymentName);
+//chatClient = azureOpenAIClient.GetChatClient(deploymentName).AsIChatClient();
 #endregion
 
 #region  OpenAI
 //string apiKey = hostBuilder.Configuration["OpenAI:ApiKey"];
 //string modelId = hostBuilder.Configuration["OpenAI:ModelId"];
 
-//var openAIChatClient = new ChatClient(modelId, apiKey);
+//var openAIChatClient = new OpenAI.Chat.ChatClient(modelId, apiKey);
 
-//chatClient = openAIChatClient.AsChatClient();
+//chatClient = openAIChatClient.AsIChatClient();
 #endregion
 
 #region GitHub Models
@@ -47,7 +47,7 @@ IChatClient? chatClient = null;
 //var ghChatClient = new ChatCompletionsClient(
 //    new Uri(endpoint),
 //    new AzureKeyCredential(token));
-//chatClient = ghChatClient.AsChatClient(model);
+//chatClient = ghChatClient.AsIChatClient(model);
 #endregion
 
 #region Loren Ipsum Chat Client
@@ -64,7 +64,7 @@ var app = hostBuilder.Build();
 var client = app.Services.GetRequiredService<IChatClient>();
 
 #region Sync response
-//var response = await client.GetResponseAsync("What is a Generative Model?");
+//var response = await client.GetResponseAsync("What are the purpose of the Microsoft.Extensions");
 //Console.WriteLine(response.Message.Text);
 #endregion
 
@@ -77,11 +77,11 @@ var client = app.Services.GetRequiredService<IChatClient>();
 #endregion
 
 #region Stream response
-//var streamResponse = chatClient.GetStreamingResponseAsync("What are the purpose of the Microsoft.Extensions");
-//await foreach (var chunk in streamResponse)
-//{
-//    Console.Write(chunk.Text);
-//}
-//Console.WriteLine();
+var streamResponse = chatClient.GetStreamingResponseAsync("What are the purpose of the Microsoft.Extensions");
+await foreach (var chunk in streamResponse)
+{
+    Console.Write(chunk.Text);
+}
+Console.WriteLine();
 #endregion
 
