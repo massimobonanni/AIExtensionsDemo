@@ -19,15 +19,15 @@ IEmbeddingGenerator<string, Embedding<float>>? embeddingGenerator = null;
 #endregion
 
 #region Azure OpenAI 
-//string apiKey = configuration["AzureOpenAI:ApiKey"];
-//string deploymentName = configuration["AzureOpenAI:DeploymentName"];
-//string endpoint = configuration["AzureOpenAI:Endpoint"];
+string apiKey = configuration["AzureOpenAI:ApiKey"];
+string deploymentName = configuration["AzureOpenAI:DeploymentName"];
+string endpoint = configuration["AzureOpenAI:Endpoint"];
 
-//var azureOpenAIClient = new AzureOpenAIClient(
-//    new Uri(endpoint),
-//    new AzureKeyCredential(apiKey));
-//var embeddingClient = azureOpenAIClient.GetEmbeddingClient(deploymentName);
-//embeddingGenerator = embeddingClient.AsIEmbeddingGenerator();
+var azureOpenAIClient = new AzureOpenAIClient(
+    new Uri(endpoint),
+    new AzureKeyCredential(apiKey));
+var embeddingClient = azureOpenAIClient.GetEmbeddingClient(deploymentName);
+embeddingGenerator = embeddingClient.AsIEmbeddingGenerator();
 #endregion
 
 #region  OpenAI
@@ -52,9 +52,9 @@ IEmbeddingGenerator<string, Embedding<float>>? embeddingGenerator = null;
 
 var textToEmbed = "Hello, World!";
 Console.WriteLine($"Text to embed: '{textToEmbed}'");
-var embedding = await embeddingGenerator.GenerateEmbeddingAsync("Hello, World!");
-Console.WriteLine($"Vector lenght {embedding.Vector.Length}");
-foreach (var value in embedding.Vector.Span)
+var embedding = await embeddingGenerator.GenerateVectorAsync("Hello, World!");
+Console.WriteLine($"Vector lenght {embedding.Length}");
+foreach (var value in embedding.Span)
 {
     Console.Write($"{value:0.00} ");
 }
