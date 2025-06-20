@@ -65,7 +65,7 @@ var client = app.Services.GetRequiredService<IChatClient>();
 
 #region Sync response
 //var response = await client.GetResponseAsync("What are the purpose of the Microsoft.Extensions");
-//Console.WriteLine(response.Message.Text);
+//Console.WriteLine(response.Text);
 #endregion
 
 #region OpenAI Features
@@ -77,11 +77,11 @@ var client = app.Services.GetRequiredService<IChatClient>();
 #endregion
 
 #region Stream response
-var streamResponse = chatClient.GetStreamingResponseAsync("What are the purpose of the Microsoft.Extensions");
-await foreach (var chunk in streamResponse)
-{
-    Console.Write(chunk.Text);
-}
-Console.WriteLine();
+//var streamResponse = chatClient.GetStreamingResponseAsync("What are the purpose of the Microsoft.Extensions");
+//await foreach (var chunk in streamResponse)
+//{
+//    Console.Write(chunk.Text);
+//}
+//Console.WriteLine();
 #endregion
 
