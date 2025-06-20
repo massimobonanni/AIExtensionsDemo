@@ -20,14 +20,14 @@ IChatClient? chatClient = null;
 #endregion
 
 #region Azure OpenAI 
-string apiKey = hostBuilder.Configuration["AzureOpenAI:ApiKey"];
-string deploymentName = hostBuilder.Configuration["AzureOpenAI:DeploymentName"];
-string endpoint = hostBuilder.Configuration["AzureOpenAI:Endpoint"];
+//string apiKey = hostBuilder.Configuration["AzureOpenAI:ApiKey"];
+//string deploymentName = hostBuilder.Configuration["AzureOpenAI:DeploymentName"];
+//string endpoint = hostBuilder.Configuration["AzureOpenAI:Endpoint"];
 
-var azureOpenAIClient = new AzureOpenAIClient(
-    new Uri(endpoint),
-    new AzureKeyCredential(apiKey));
-chatClient = azureOpenAIClient.GetChatClient(deploymentName).AsIChatClient();
+//var azureOpenAIClient = new AzureOpenAIClient(
+//    new Uri(endpoint),
+//    new AzureKeyCredential(apiKey));
+//chatClient = azureOpenAIClient.GetChatClient(deploymentName).AsIChatClient();
 #endregion
 
 #region  OpenAI
@@ -53,8 +53,8 @@ chatClient = azureOpenAIClient.GetChatClient(deploymentName).AsIChatClient();
 // Setup DI services
 hostBuilder.Services.AddChatClient(chatClient)
     .UseLanguage("italian")
-    //.UseRateLimit(TimeSpan.FromSeconds(30))
-    //.UseTokenCounter()
+    .UseRateLimit(TimeSpan.FromSeconds(30))
+    .UseTokenCounter()
     .UseFunctionInvocation();
 
 hostBuilder.Services.AddLogging(builder => builder.AddConsole().SetMinimumLevel(LogLevel.Trace));
