@@ -66,7 +66,7 @@ while (true)
     var input = Console.ReadLine();
     if (input == "") break;
 
-    var questionEmbedding = await embeddingGenerator.GenerateEmbeddingAsync(input);
+    var questionEmbedding = await embeddingGenerator.GenerateAsync(input);
 
     var results = from e in textEmbeddings
                   let similarity = TensorPrimitives.CosineSimilarity(e.Embedding.Vector.Span,questionEmbedding.Vector.Span)
