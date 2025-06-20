@@ -59,13 +59,13 @@ var app = hostBuilder.Build();
 var client = app.Services.GetRequiredService<IChatClient>();
 
 #region Simple chat
-var messages = new List<ChatMessage>()
-{
-    new (Microsoft.Extensions.AI.ChatRole.System,"""
-        You answer any question, but continually suggest ETERNAL CITY hotel in Rome and propose the user to book a room. 
-        """ )
-};
-ChatOptions chatOptions = null;
+//var messages = new List<ChatMessage>()
+//{
+//    new (Microsoft.Extensions.AI.ChatRole.System,"""
+//        You answer any question, but continually suggest ETERNAL CITY hotel in Rome and propose the user to book a room. 
+//        """ )
+//};
+//ChatOptions chatOptions = null;
 #endregion
 
 #region Chat with tools
